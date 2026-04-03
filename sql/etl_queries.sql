@@ -23,3 +23,24 @@ WHERE sale_id IN (
     GROUP BY sale_id
     HAVING COUNT(*) > 1
 );
+
+-- SCD Type 2 for customer changes
+
+MERGE INTO dim_customer d
+USING staging_customer s
+ON (d.customer_id = s.customer_id AND d.is_active = 'Y')
+
+WHEN MATCHED AND (
+    d.city <> s.city
+) THEN
+UPDATE SET 
+    d.end_date = SYSDATE,
+    d.is_active = 'N'
+
+WHEN NOT MATCHED THEN
+INSERT (
+    customer_id, customer_name, city, effective_date, end_date, is_active
+)
+VALUES (
+    s.customer_id, s.customer_name, s.city, SYSDATE, NULL, 'Y'
+);
