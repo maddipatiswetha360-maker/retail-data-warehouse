@@ -1,54 +1,55 @@
 # Retail Data Warehouse Project
 
-## Overview
-This project demonstrates the design and implementation of an end-to-end data warehouse using SQL.  
-It simulates a real-world retail business scenario where sales data is processed and analyzed.
+## 📌 Overview
+Designed and implemented an end-to-end data warehouse using SQL to analyze retail sales data and generate business insights.
 
 ---
 
-## Architecture
-Raw Data → Staging Layer → Data Warehouse (Fact & Dimension Tables)
+## 🏗️ Architecture
+Raw Data → Staging Tables → Data Warehouse (Fact & Dimension Tables) → Reporting Layer
 
 ---
 
-## Data Model
-- **Fact Table**
-  - fact_sales: Stores transactional sales data
+## 📊 Data Model
+Implemented a **Star Schema**:
 
-- **Dimension Tables**
-  - dim_customer: Customer details
-  - dim_product: Product information
-  - dim_date: Date-related attributes
-
----
-
-## ETL Process
-- Extracted data into staging table
-- Transformed using SQL joins
-- Loaded into fact table
-- Implemented data quality checks
+- Fact Table: fact_sales  
+- Dimension Tables:
+  - dim_customer  
+  - dim_product  
+  - dim_date  
 
 ---
 
-## Business Use Cases
-- Top revenue generating products
-- Monthly sales trend analysis
-- Customer lifetime value
-- Identifying repeat customers
+## 🔄 ETL Process
+- Loaded data from staging tables
+- Performed transformations using SQL joins
+- Calculated derived metrics (total_amount)
+- Implemented **Slowly Changing Dimension (SCD Type 2)** for tracking customer changes
 
 ---
 
-## Tech Stack
+## ⚡ Key Features
+- Star schema data modeling  
+- ETL pipeline using SQL  
+- SCD Type 2 implementation  
+- Analytical queries for business insights  
+- Performance optimization using indexing  
+
+---
+
+## 📈 Business Use Cases
+- Top-selling products  
+- Monthly revenue trends  
+- Customer lifetime value  
+- Top customers per month  
+
+---
+
+## 🛠️ Tech Stack
 - SQL (Oracle / RDBMS)
 
 ---
 
-## Future Enhancements
-- Integrate with Azure Data Factory (ADF)
-- Process large data using Databricks (PySpark)
-- Build dashboards using Power BI
-
----
-
-## Author
-Swetha Maddipati
+## 👩‍💻 Author
+Swetha
