@@ -24,3 +24,19 @@ SELECT customer_id, COUNT(*) AS purchase_count
 FROM fact_sales
 GROUP BY customer_id
 HAVING COUNT(*) > 1;
+
+-- Top 3 customers by revenue per month
+
+SELECT *
+FROM (
+    SELECT 
+        c.customer_name,
+        d.month,
+        SUM(f.total_amount) revenue,
+        RANK() OVER (PARTITION BY d.month ORDER BY SUM(f.total_amount) DESC) rnk
+    FROM fact_sales f
+    JOIN dim_customer c ON f.customer_id = c.customer_id
+    JOIN dim_date d ON f.date_id = d.date_id
+    GROUP BY c.customer_name, d.month
+)
+WHERE rnk <= 3;
