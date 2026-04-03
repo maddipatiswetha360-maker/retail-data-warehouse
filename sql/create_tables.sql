@@ -36,3 +36,6 @@ CREATE TABLE fact_sales (
     FOREIGN KEY (product_id) REFERENCES dim_product(product_id),
     FOREIGN KEY (date_id) REFERENCES dim_date(date_id)
 );
+
+-- Index creation on Fact Table
+CREATE INDEX idx_sales_customer ON fact_sales(customer_id);
